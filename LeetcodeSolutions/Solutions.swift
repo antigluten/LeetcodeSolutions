@@ -161,3 +161,60 @@ func minPairSum(_ nums: [Int]) -> Int {
     
     return maxPair
 }
+
+// 704. Binary Search
+func search(_ nums: [Int], _ target: Int) -> Int {
+    var left = 0
+    var right = nums.count - 1
+    
+    while left <= right {
+        let middle = (right + left) / 2
+        
+        if nums[middle] == target {
+            return middle
+        } else if nums[middle] > target {
+            right = middle - 1
+        } else {
+            left = middle + 1
+        }
+    }
+    
+    return -1
+}
+
+// 1313. Decompress Run-Length Encoded List
+func decompressRLElist(_ nums: [Int]) -> [Int] {
+    var result = [Int]()
+    
+    for index in 0..<nums.count / 2 {
+        let freq = nums[index * 2]
+        let val = nums[index * 2 + 1]
+        
+        result += Array(repeating: val, count: freq)
+    }
+    
+    return result
+}
+
+// 1720. Decode XORed Array
+func decode(_ encoded: [Int], _ first: Int) -> [Int] {
+    var result = [Int]()
+    result.append(first)
+    
+    for index in 0..<encoded.count {
+        result.append(result[index]^encoded[index])
+    }
+
+    return result
+}
+
+// 1389. Create Target Array in the Given Order
+func createTargetArray(_ nums: [Int], _ index: [Int]) -> [Int] {
+    var target = [Int]()
+    
+    for i in 0..<nums.count {
+        target.insert(nums[i], at: index[i])
+    }
+    
+    return target
+}
