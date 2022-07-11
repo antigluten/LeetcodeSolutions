@@ -119,3 +119,45 @@ func flipAndInvertImage(_ image: [[Int]]) -> [[Int]] {
     
     return newImage
 }
+
+// 2149. Rearrange Array Elements by Sign
+func rearrangeArray(_ nums: [Int]) -> [Int] {
+    var result = [Int]()
+    
+    var positive = [Int]()
+    var negative = [Int]()
+    
+    for num in nums {
+        if num > 0 {
+            positive.append(num)
+        } else {
+            negative.append(num)
+        }
+    }
+    
+    for index in 0..<nums.count {
+        if index % 2 == 0 {
+            result.append(positive[index / 2])
+        } else {
+            result.append(negative[index / 2])
+        }
+    }
+    
+    return result
+}
+
+// 1877. Minimize Maximum Pair Sum in Array
+func minPairSum(_ nums: [Int]) -> Int {
+    let sorted = nums.sorted()
+    
+    var maxPair = 0
+    
+    for index in 0..<sorted.count / 2 {
+        let left = sorted[index]
+        let right = sorted[sorted.count - index - 1]
+        
+        maxPair = max(left + right, maxPair)
+    }
+    
+    return maxPair
+}
